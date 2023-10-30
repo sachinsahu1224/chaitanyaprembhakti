@@ -1,0 +1,87 @@
+
+<div id="page-wrapper">
+    <div class="graphs">
+        <h3 class="blank1">Founder Acharya</h3>
+        <?php
+        if($this->session->flashdata('success')) {
+            ?>
+            <div class="col-sm-12">
+              <div class="col-sm-2">
+              </div>
+              <div class="alert alert-success alert-dismissable fade in col-sm-8">
+
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> <?php echo $this->session->flashdata('success'); ?>.
+            </div>
+            <div class="col-sm-2">
+
+            </div>
+        </div>
+        <?php
+    }
+
+    if($this->session->flashdata('error')) {
+        ?>
+        <div class="col-sm-12">
+          <div class="col-sm-2">
+          </div>
+          <div class="alert alert-danger alert-dismissable fade in col-sm-8">
+
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>error!</strong> <?php echo $this->session->flashdata('error'); ?>.
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+    </div>
+    <?php
+}
+?>
+<div class="tab-content">
+    <div class="tab-pane active" id="horizontal-form">
+        <form class="form-horizontal" action="<?php echo base_url(); ?>AdminHome/updatefounder_acharya" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="focusedinput" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-8">
+                    <textarea name="description"><?php  
+                        if(isset($founder_acharya[0]['description'])){
+                            echo $founder_acharya[0]['description'];
+                        }
+                    ?>
+                    </textarea>
+                   
+                    <script>
+                        CKEDITOR.replace('description');
+                    </script>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="focusedinput" class="col-sm-2 control-label">Image</label>
+                <div class="col-sm-8">
+                    <input type="file" name="img"  required="">
+                </div>
+            </div>
+            <?php if(isset($founder_acharya[0]['image']) && $founder_acharya[0]['image']!=''){ ?>
+            <div class="form-group">
+                  <label for="focusedinput" class="col-sm-2 control-label"></label>
+                <div class="col-sm-4">
+                        <image src="<?php echo base_url($founder_acharya[0]['image']); ?>">
+                </div>
+            </div>
+            <?php } ?> 
+
+            <div class="form-group">
+                <label for="focusedinput" class="col-sm-2 control-label"></label>
+                <div class="col-sm-8">
+                    <button type="Submit" class="btn btn-success">Submit</button>
+                    <a href="<?php echo base_url(); ?>AdminHome"><button type="button" class="btn btn-danger">Cancel</button></a>
+                </div>
+            </div>
+        </form>
+        <?php echo form_close(); ?>
+    </div>
+</div>
+
+
+</div>
+</div>
